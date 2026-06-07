@@ -35,6 +35,7 @@
             (py3.withPackages (ps: with ps; [
               numpy
               NetfilterQueue
+              scapy
             ]))
           ];
         };
