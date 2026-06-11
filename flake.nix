@@ -30,12 +30,29 @@
         };
       in
       {
+        packages.default = pkgs.python3Packages.buildPythonPackage rec {
+          pname = "filter203";
+          version = "0.1.0";
+          nativeBuildInputs = [
+            pkgs.python3Packages.setuptools
+          ];
+          buildInputs = with pkgs.python3Packages; [
+            pkgs.python3
+            numpy
+            NetfilterQueue
+            scapy
+            bitarray
+          ];
+          pyproject = true;
+          src = ./.;
+        };
         devShells.default = pkgs.mkShell {
           buildInputs = [
             (py3.withPackages (ps: with ps; [
               numpy
               NetfilterQueue
               scapy
+              bitarray
             ]))
           ];
         };
